@@ -9,34 +9,14 @@ namespace Problem03PCCatalog
     class Computer
     {
         private string name;
-        private Component processor;
-        private Component motherboard;
-        private Component graphicsCard;
-        private Component ram;
-        private Component hdd;
-        private Component powerSupply;
-        private Component box;
+        private List<Component> components = new List<Component>();
         private decimal totalPrice;
 
-        public Computer (
-            string name,
-            Component processor = null, 
-            Component motherboard = null, 
-            Component graphicsCard = null,
-            Component ram = null, 
-            Component hdd = null, 
-            Component powerSupply = null, 
-            Component box = null)
+        public Computer (string name, List<Component> components)
         {
             this.Name = name;
+            this.Components = components;
             this.TotalPrice = totalPrice;
-            this.Processor = processor;
-            this.Motherboard = motherboard;
-            this.GraphicsCard = graphicsCard;
-            this.Ram = ram;
-            this.Hdd = hdd;
-            this.PowerSupply = powerSupply;
-            this.Box = box;
         }
 
         public string Name 
@@ -54,6 +34,19 @@ namespace Problem03PCCatalog
                 this.name = value;
             }
         }
+
+        public List<Component> Components
+        {
+            get { return components; }
+            set 
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException("Value cannot be empty");
+                }
+                this.components = value; 
+            }
+        }
     
         public decimal TotalPrice 
         {
@@ -67,77 +60,12 @@ namespace Problem03PCCatalog
             }
         }
 
-        public Component Processor 
-        { 
-            get { return this.processor; }
-            set { this.processor = value; }
-        }
-
-        public Component Motherboard 
-        {
-            get { return this.motherboard; }
-            set { this.motherboard = value; }
-        }
-
-        public Component GraphicsCard 
-        {
-            get { return this.graphicsCard; }
-            set { this.graphicsCard = value; }
-        }
-
-        public Component Ram 
-        {
-            get { return this.ram; }
-            set { this.ram = value; }
-        }
-
-        public Component Hdd 
-        {
-            get { return this.hdd; }
-            set { this.hdd = value; }
-        }
-
-        public Component PowerSupply
-        {
-            get { return this.powerSupply; }
-            set { this.powerSupply = value; }
-        }
-
-        public Component Box
-        {
-            get { return this.box; }
-            set { this.box = value; }
-        }
-
         public void GetTotalPrice()
         {
-            if (this.Processor != null)
+            totalPrice = 0;
+            foreach (Component c in components)
             {
-                this.totalPrice += Processor.Price;
-            }
-            if (this.Motherboard != null)
-            {
-                this.totalPrice += Motherboard.Price;
-            }
-            if (this.GraphicsCard != null)
-            {
-                this.totalPrice += GraphicsCard.Price;
-            }
-            if (this.Ram != null)
-            {
-                this.totalPrice += Ram.Price;
-            }
-            if (this.Hdd != null)
-            {
-                this.totalPrice += Hdd.Price;
-            }
-            if (this.PowerSupply != null)
-            {
-                this.totalPrice += PowerSupply.Price;
-            }
-            if (this.Box != null)
-            {
-                this.totalPrice += Box.Price;
+                this.totalPrice += c.Price;
             }
         }
 
@@ -145,37 +73,12 @@ namespace Problem03PCCatalog
         {
             string computerStr = null;
             computerStr += "Name: " + this.Name + "\n";
-            if (this.Processor != null)
+            foreach (Component c in components)
             {
-                computerStr += "Processor: " + this.Processor + "\n";
-            }
-            if (this.Motherboard != null)
-            {
-                computerStr += "Motherboard: " + this.Motherboard + "\n";
-            }
-            if (this.GraphicsCard != null)
-            {
-                computerStr += "Graphics Card: " + this.GraphicsCard + "\n";
-            }
-            if (this.Ram != null)
-            {
-                computerStr += "RAM: " + this.Ram + "\n";
-            }
-            if (this.Hdd != null)
-            {
-                computerStr += "HDD: " + this.Hdd + "\n";
-            }
-            if (this.PowerSupply != null)
-            {
-                computerStr += "Power Supply: " + this.PowerSupply + "\n";
-            }
-            if (this.Box != null)
-            {
-                computerStr += "Box: " + this.Box + "\n";
+                computerStr += c.ToString() + "\n";
             }
             GetTotalPrice();
             computerStr += "Total Price: " + this.totalPrice + " BGN\n";
-
             return computerStr.ToString();
         }
     }

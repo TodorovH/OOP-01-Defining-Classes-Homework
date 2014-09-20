@@ -72,7 +72,7 @@ namespace Problem03PCCatalog
         public override string ToString()
         {
             string componentStr = null;
-            componentStr += this.Name;
+            componentStr += "Name: " + this.Name;
             if (this.details != null)
             {
                 componentStr += ", details: " + this.Details;

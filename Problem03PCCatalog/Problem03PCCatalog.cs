@@ -38,12 +38,12 @@ namespace Problem03PCCatalog
             Component box2 = new Component("Turbo-X", (decimal)39.00, "Sphere III Midi Tower");
             Component box3 = new Component("Fazn A18", (decimal)45.00, "Piano Black - Midi (A1008)");
 
-            Computer pc1 = new Computer("First", processor1, motherboard1, graphicsCard1, ram1, hdd1, powerSupply1, box1);
-            Computer pc2 = new Computer("Second", processor2, motherboard2, graphicsCard2, ram2, hdd2, powerSupply2, box2);
-            Computer pc3 = new Computer("Third", processor3, motherboard3, graphicsCard3, ram3, hdd3, powerSupply3, box3);
-            Computer pc4 = new Computer("Forth", processor1, graphicsCard2, ram1, hdd3, powerSupply1, box3);
-            Computer pc5 = new Computer("Fifth", processor1, motherboard2, ram1, hdd1, box2);
-            Computer pc6 = new Computer("Sixth", processor2, motherboard3, graphicsCard1, powerSupply3, box1);
+            Computer pc1 = new Computer("NewGeneration", new List<Component>(){processor1, motherboard1, graphicsCard1, ram1, hdd1, powerSupply1, box1});
+            Computer pc2 = new Computer("Comodor", new List<Component>(){processor2, motherboard2, graphicsCard2, ram2, hdd2, powerSupply2, box2});
+            Computer pc3 = new Computer("Howk", new List<Component>(){processor3, motherboard3, graphicsCard3, ram3, hdd3, powerSupply3, box3});
+            Computer pc4 = new Computer("Doom", new List<Component>(){processor1, graphicsCard2, ram1, hdd3, powerSupply1, box3});
+            Computer pc5 = new Computer("Sky", new List<Component>(){processor1, motherboard2, ram1, hdd1, box2});
+            Computer pc6 = new Computer("Desert", new List<Component>(){processor2, motherboard3, graphicsCard1, powerSupply3, box1});
 
             List<Computer> compList = new List<Computer>();
             compList.Add(pc1);
@@ -57,9 +57,9 @@ namespace Problem03PCCatalog
 
             newList = compList.OrderBy(c => c.TotalPrice).ToList();
 
-            foreach (var c in newList)
+            foreach (var pc in newList)
             {
-                Console.WriteLine(c.ToString());
+                Console.WriteLine(pc.ToString()); ;
                 Console.WriteLine();
             }
         }
